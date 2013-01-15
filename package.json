@@ -1,0 +1,43 @@
+{
+    "name" : "gbif-checklistbank",
+    "version" : "0.1.0",
+    "description" : "Node Library for interacting with GBIF's Checklist Bank API.",
+	"homepage" : "https://github.com/silverbiology/gbif-checklistbank",
+    "main" : "./index.js",
+    "directories" : {
+        "lib" : ".",
+        "test" : "test",
+        "example" : "example"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/silverbiology/gbif-checklistbank.git"
+    },
+    "keywords" : [
+        "ocr",
+        "darwincore",
+		"darwin core",
+        "gbif",
+		"checklist",
+		"species",
+		"higher taxa",
+		"taxa",
+		"parser",
+        "parsing",
+        "scientific name",
+		"scientificname",
+		"silverbiology"
+    ],
+    "author" : {
+        "name" : "SilverBiology",
+        "email" : "contact@silverbiology.com",
+        "url" : "http://www.silverbiology.com"
+    },
+    "license" : "",
+    "engine" : {
+        "node" : ">=0.6"
+    },
+	"dependencies": {
+		"needle": "*"
+	}
+}
