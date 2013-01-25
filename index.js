@@ -7,6 +7,7 @@ var gbifchecklistBank = function( ocrTxt ) {
 	var routeNav = "http://ecat-dev.gbif.org/ws/nav/"; // Navigation Service
 	var routeName = "http://ecat-dev.gbif.org/ws/name/"; // Name String Service
 	var routeImage = "http://ecat-dev.gbif.org/ws/image/"; // Image Service
+	var routeNameFinder = "http://ecat-dev.gbif.org/ws/indexer"; // Name Finder Service
 	
 	var me = this;
 	this.ocr = ocrTxt || null;
@@ -52,6 +53,8 @@ var gbifchecklistBank = function( ocrTxt ) {
 	this.lookupUsage = function( options, callback ) {
 		var options = options || {};
 		options.id = options.id || "";
+		options.rkey = options.rkey || 1;
+		options.showRanks = options.showRanks || 'kpcofgs';
 //		var input = encodeURIComponent( this.ocr );
 		var type = "text";
 		var format = "json";
@@ -59,7 +62,7 @@ var gbifchecklistBank = function( ocrTxt ) {
 		if (options.q) {
 			req += "q=" + encodeURIComponent(options.q);
 		}
-		console.log(req);
+		req += "&rkey=" + options.rkey + "&showRanks=" + options.showRanks;
 		needle.get(req, function(error, response, body){
 			if (response.statusCode == 200) {
 				if (callback) callback( body.data );
@@ -70,6 +73,21 @@ var gbifchecklistBank = function( ocrTxt ) {
 		});	
 	}
 
+	this.findName = function(callback ) {
+		var input = encodeURIComponent(me.ocr);
+		var type = "text";
+		var format = "json";
+		var req = routeNameFinder + "?" + "input=" + input + "&type=" + type + "&format=" + format;
+		needle.get(req, function(error, response, body){
+			if(body.names) {
+				return callback(body.names);
+			} else {
+				return callback([]);
+			}
+		}
+		, this);	
+	}
+	
 };
 
 module.exports = gbifchecklistBank;

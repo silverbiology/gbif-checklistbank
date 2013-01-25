@@ -17,11 +17,11 @@ clb.lookupUsage({
 	console.log(res);
 });
 
-clb.lookupUsage({
-	q: name2
-}, function( res ) {
-	console.log(res);
-});
+// clb.lookupUsage({
+	// q: name2
+// }, function( res ) {
+	// console.log(res);
+// });
 
 /*
 clb.loadChecklists(function( res ) {
