@@ -1,3 +1,5 @@
+var path = require( 'path' );
+
 var gbifChecklistBank = require('../index');
 var clb = new gbifChecklistBank();
 
@@ -12,3 +14,6 @@ clb.setOcr(ocrTxt1);
 clb.findName(function( res ) {
 	console.log(res);
 });
+
+// clb.setParams({writeCache:false, useCache:false, cacheFolder: path.resolve(__dirname,'../cacheFolder/')});
+// console.log(clb.getParams());

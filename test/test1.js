@@ -1,3 +1,7 @@
+
+var path = require( 'path' );
+var fs = require( 'fs' );
+
 var gbifChecklistBank = require('../index');
 var clb = new gbifChecklistBank();
 
@@ -10,6 +14,9 @@ clb.lookupUsageByID( 111989970, function( res ) {
 });
 */
 
+clb.setParams({writeCache:true, useCache:true});
+
+// console.log(clb.getParams());
 
 clb.lookupUsage({
 	q: name1
