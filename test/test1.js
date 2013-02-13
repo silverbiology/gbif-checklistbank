@@ -8,6 +8,10 @@ var clb = new gbifChecklistBank();
 var name1 = 'Arthopyrenia cinchonae';
 var name2 = 'Quercus';
 
+var name1 = 'Cerceris chilopsidis';
+var name1 = 'Wislizenia refracta';
+var name1 = 'Cerceris conifrons';
+
 /*
 clb.lookupUsageByID( 111989970, function( res ) {
 	console.log(res);

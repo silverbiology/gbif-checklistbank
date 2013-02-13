@@ -2,7 +2,7 @@ var gbifchecklistBank = function( ocrTxt ) {
 
 	var needle = require('needle');
 	var routeChecklist = "http://ecat-dev.gbif.org/ws/checklist/"; // Checklist Service
-	var routeResolve = "http://ecat-dev.gbif.org/ws/usage/"; // Name URI Resolver
+	var routeResolve = "http://ecat-dev.gbif.org/ws/resolve/"; // Name URI Resolver
 	var routeUsage = "http://ecat-dev.gbif.org/ws/usage/"; // Name Usage Service
 	var routeNav = "http://ecat-dev.gbif.org/ws/nav/"; // Navigation Service
 	var routeName = "http://ecat-dev.gbif.org/ws/name/"; // Name String Service
@@ -89,10 +89,11 @@ var gbifchecklistBank = function( ocrTxt ) {
 			}
 			if(fs.existsSync(me.cacheFolder)) {
 				if('object' == typeof data) {
-					// console.log('Test');
 					data = JSON.stringify(data);
-					fs.writeFileSync(path.join(me.cacheFolder,filename),data);
-					return true;
+					if(data != '[]') {
+						fs.writeFileSync(path.join(me.cacheFolder,filename),data);
+						return true;
+					}
 				}
 			}
 		}
@@ -160,6 +161,29 @@ var gbifchecklistBank = function( ocrTxt ) {
 		, this);	
 	}
 	
+	this.navigate = function( options, callback ) {
+		var options = options || {};
+		options.id = options.id || '';
+		options.rkey = options.rkey || 1;
+		options.rank = options.rank || '';
+		options.showRanks = options.showRanks || '';
+		options.showVernaculars = options.showVernaculars || '';
+		options.showIds = options.showIds || '';
+		options.sort = options.sort || '';
+		options.page = options.page || '';
+		options.pageSize = options.pageSize || '';
+		var type = "text";
+		var format = "json";
+		var req = routeNav + "?id=" + options.id + '&rkey=' + options.rkey + '&rank=' + options.rank + '&showRanks=' + options.showRanks + '&showVernaculars=' + options.showVernaculars + '&showIds=' + options.showIds + '&sort=' + options.sort + '&page=' + options.page + '&pageSize=' + options.pageSize;
+		needle.get(req, function(error, response, body){
+			if (response.statusCode == 200) {
+				me.writeToCache(options.q,body.data);
+				if (callback) callback( body.data );
+			} else {
+				// error
+			}
+		});
+	}
 };
 
 module.exports = gbifchecklistBank;
