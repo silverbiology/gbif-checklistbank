@@ -11,6 +11,7 @@ var name2 = 'Quercus';
 var name1 = 'Cerceris chilopsidis';
 var name1 = 'Wislizenia refracta';
 var name1 = 'Cerceris conifrons';
+//console.log(name1);
 
 /*
 clb.lookupUsageByID( 111989970, function( res ) {
