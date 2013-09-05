@@ -179,22 +179,22 @@ this. gbifName_usageAll = function(options,limit,offset, callback ) {
 		} else {
 			options.language= options.language || "";
 			console.log("chkng");
-			options.sourceid = options.sourceid || 1;
-			options.datasetkey = options.datasetkey || "";
+			options.sourceId = options.sourceId || 1;
+			options.datasetKey = options.datasetKey || "";
 	
 	var limit = limit || "" ;
 	var offset = offset ||  "" ;
 	
 	var paramArray = [];  //here we add new paramarray
    var req = routeUsageService + "?";
-   if (options.sourceid != "") {
-    paramArray.push(" sourceid=" + encodeURIComponent(options.sourceid ));
+   if (options.sourceId != "") {
+    paramArray.push(" sourceId=" + encodeURIComponent(options.sourceId ));
 	} 
 	if(options.language != "") {
 	paramArray.push(" language=" + encodeURIComponent(options.language));
 	}
 	if(options.datasetkey != ""){
-	paramArray.push(" datasetkey=" + encodeURIComponent(options.datasetkey));
+	paramArray.push(" datasetKey=" + encodeURIComponent(options.datasetKey));
 	}
 	if(limit != "") {
 	paramArray.push(" limit=" + encodeURIComponent(limit));
