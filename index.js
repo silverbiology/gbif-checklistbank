@@ -1,7 +1,14 @@
 var gbifchecklistBank = function( ocrTxt ) {
 
 	var needle = require('needle');
-	var routeNameUsage = " http://api.gbif.org//lookup/name_usage"; // LookupNameusage Service
+	
+	
+	var routeNameUsage = " http://api.gbif.org/lookup/name_usage"; // LookupNameusage Service
+	var routeUsageService = "http://api.gbif.org/name_usage"; // Name Usage Service (passing of id and language)
+	var routeVerbatim = "http://api.gbif.org/name_usage/{int}/verbatim"; // Name Usage Verbatim (passing of id)
+	var routeName= "http://api.gbif.org/name_usage/{int}/name"; // Name Usage Verbatim (passing of id)
+	var routeParents= "http://api.gbif.org/name_usage/{int}/parents"; // Name Usage Verbatim (passing of id)
+	
 	
 	var path = require( 'path' );
 	var fs = require( 'fs' );
@@ -124,71 +131,143 @@ var gbifchecklistBank = function( ocrTxt ) {
 		} else {
 			options.name= options.name || "";
 			console.log("chkng");
-			/*options.rank = options.rank || 1;
+			options.rank = options.rank || 1;
 			options.kingdom = options.kingdom || "";
 			options.strict = options.strict || "";
-			options.verbose = options.verbose || "";*/
+			options.verbose = options.verbose || "";
 			
 			var type = "text";
 			var format = "json";
 			var req = routeNameUsage + options.name + "?";
-			if (options.name) {
-				req += "name=" + encodeURIComponent(options.name);
-			}
-			//req += "&rank=" + options.rank + "&kingdom=" + options.kingdom + "&strict=" + options.strict  + "&verbose=" + options.verbose;
-			
+			 var paramArray = [];  //here we add new paramarray
+   var req = routeNameUsage + "?";
+   if (options.name != "") {
+    paramArray.push("name=" + encodeURIComponent(options.name));
+   }
+   //req += "&rank=" + options.rank + "&kingdom=" + options.kingdom + "&strict=" + options.strict  + "&verbose=" + options.verbose;
+   
+   if(paramArray.length) {
+    req = req + paramArray.join('&');
+ 
 			console.log("chkng");
 			needle.get(req, function(error, response, body){
-			//console.log("chkng",body);
-			console.log("chkng",response.statusCode);
+			console.log("chkng",body);
+			//console.log("chkng",response.statusCode);
 				if (response.statusCode == 200) {
 					//me.writeToCache(options.name,options.rank,body.data);
-					if (callback) callback( body.data );
+					if (callback) callback( body);
 				} else {
 					// error
 				}
 			});
 		}
 	}
-	
-/*	this.findName = function(callback ) {
-		var input = encodeURIComponent(me.ocr);
-		var type = "text";
-		var format = "json";
-		var req = routeNameFinder + "?" + "input=" + input + "&type=" + type + "&format=" + format;
-		needle.get(req, function(error, response, body){
-			if(body.names) {
-				return callback(body.names);
-			} else {
-				return callback([]);
-			}
-		}
-		, this);	
-	}*/
-	
-	/*this.navigate = function( options, callback ) {
+}
+
+
+
+//adding of gbif.name_usage.all( {id}, {language} );
+
+
+
+this. gbifName_usageAll = function(options,limit,offset, callback ) {
 		var options = options || {};
-		options.name = options.name|| '';
-		options.rkey = options.rkey || 1;
-		options.rank = options.rank || '';
-		options.showRanks = options.showRanks || '';
-		options.showVernaculars = options.showVernaculars || '';
-		options.showIds = options.showIds || '';
-		options.sort = options.sort || '';
-		options.page = options.page || '';
-		options.pageSize = options.pageSize || '';
-		var type = "text";
-		var format = "json";
-		var req = routeNav + "?id=" + options.id + '&rkey=' + options.rkey + '&rank=' + options.rank + '&showRanks=' + options.showRanks + '&showVernaculars=' + options.showVernaculars + '&showIds=' + options.showIds + '&sort=' + options.sort + '&page=' + options.page + '&pageSize=' + options.pageSize;
-		needle.get(req, function(error, response, body){
-			if (response.statusCode == 200) {
-				me.writeToCache(options.q,body.data);
-				if (callback) callback( body.data );
-			} else {
-				// error
-			}
-		});
-	}*/
+		if(false != (data = me.checkCache(options))) {
+		console.log("chking");
+			// console.log(data);
+			if (callback) callback( data );
+		} else {
+			options.language= options.language || "";
+			console.log("chkng");
+			options.sourceid = options.sourceid || 1;
+			options.datasetkey = options.datasetkey || "";
+	
+	var limit = limit || "" ;
+	var offset = offset ||  "" ;
+	
+	var paramArray = [];  //here we add new paramarray
+   var req = routeUsageService + "?";
+   if (options.sourceid != "") {
+    paramArray.push(" sourceid=" + encodeURIComponent(options.sourceid ));
+	} 
+	if(options.language != "") {
+	paramArray.push(" language=" + encodeURIComponent(options.language));
+	}
+	if(options.datasetkey != ""){
+	paramArray.push(" datasetkey=" + encodeURIComponent(options.datasetkey));
+	}
+	if(limit != "") {
+	paramArray.push(" limit=" + encodeURIComponent(limit));
+	}
+	if(offset != "") {
+	paramArray.push(" offset=" + encodeURIComponent(offset));
+	}
+ 
+   if(paramArray.length) {
+    req = req + paramArray.join('&');
+ 
+
+	//var req = routeUsageService + id + "?language=" + language + "?limit" + limit + "offset" +offset;
+	needle.get(req, function(error,response,body){
+		console.log("gjh",response.body);
+		console.log("err",error);
+	
+		if (callback) callback( body);
+		
+	});	
+}
+}
+}
+
+//adding of gbif.name_usage.getVerbatim( {id} );
+
+this. gbifName_usageGetVerbatim= function( id,limit,offset, callback ) {
+		
+	var id = id || "";
+	var limit = limit || "" ;
+	var offset = offset ||  "" ;
+	var paramArray = []; 
+	
+	var req = routeVerbatim + "?";
+	 if ( id != "") {
+    paramArray.push(" id=" + encodeURIComponent(id));
+	}
+	if(limit != "") {
+	paramArray.push(" limit=" + encodeURIComponent(limit));
+	}
+	if(offset != "") {
+	paramArray.push(" offset=" + encodeURIComponent(offset));
+	}
+ 
+   if(paramArray.length) {
+    req = req + paramArray.join('&');
+ console.log(req);
+	/*needle.get(req, function(error,response,body){
+		console.log("results",response.body);
+		console.log("err",error);
+		if (callback) callback( body);
+				
+	});	*/
+}
+}
+//adding gbif.name_usage.getName( {id} );
+
+this. gbifName_usageGetName= function( id,limit,offset, callback ) {
+		
+	var id = id || "";
+	var limit = limit || "" ;
+	var offset = offset ||  "" ;
+	var req = routeName + id  + "?limit" + limit + "offset" +offset; ;
+	needle.get(req, function(error,body){
+		
+		if (callback) callback( body);
+				
+	});	
+}
+
+//adding of  gbif.name_usage.getParents( {id}, {options} );
+
+
 };
 
 module.exports = gbifchecklistBank;
