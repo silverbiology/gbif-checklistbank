@@ -1,7 +1,13 @@
 var gbifchecklistBank = function( ocrTxt ) {
 
 	var needle = require('needle');
-	var routeNameUsage = " http://api.gbif.org//lookup/name_usage"; // LookupNameusage Service
+	var routeChecklist = "http://ecat-dev.gbif.org/ws/checklist/"; // Checklist Service
+	var routeResolve = "http://ecat-dev.gbif.org/ws/resolve/"; // Name URI Resolver
+	var routeUsage = "http://ecat-dev.gbif.org/ws/usage/"; // Name Usage Service
+	var routeNav = "http://ecat-dev.gbif.org/ws/nav/"; // Navigation Service
+	var routeName = "http://ecat-dev.gbif.org/ws/name/"; // Name String Service
+	var routeImage = "http://ecat-dev.gbif.org/ws/image/"; // Image Service
+	var routeNameFinder = "http://ecat-dev.gbif.org/ws/indexer"; // Name Finder Service
 	
 	var path = require( 'path' );
 	var fs = require( 'fs' );
@@ -47,14 +53,14 @@ var gbifchecklistBank = function( ocrTxt ) {
 		return me.ocr;
 	}
 
-	/*this.loadNameUsage = function( callback, type, name) {
-		var name = name || "";
+	this.loadChecklists = function( callback, type, id ) {
+		var id = id || "";
 		var type = type || "unti";
 
-		var req = routeNameUsage  + id + "?type=" + type;
+		var req = routeChecklist + id + "?type=" + type;
 		needle.get(req, function(error, response, body){
 			if (response.statusCode == 200) {
-				me.NameUsage = body.data;
+				me.checklists = body.data;
 				if (callback) callback( true );
 			} else {
 				// error
@@ -63,8 +69,8 @@ var gbifchecklistBank = function( ocrTxt ) {
 		
 	}
 	
-	/*this.lookupUsageByNAME = function( name, callback ) {
-		var req = routeUsage + name;
+	this.lookupUsageByID = function( id, callback ) {
+		var req = routeUsage + id;
 		needle.get(req, function(error, response, body){
 			if (response.statusCode == 200) {
 				if (callback) callback( body.data );
@@ -72,7 +78,7 @@ var gbifchecklistBank = function( ocrTxt ) {
 				// error
 			}
 		});	
-	}*/
+	}
 
 	this.writeToCache = function(name,data) {
 		if(me.writeCache && me.cacheFolder && name) {
@@ -113,36 +119,25 @@ var gbifchecklistBank = function( ocrTxt ) {
 	}
 	
 	// uses taxon finder service
-	
 	this.lookupUsage = function( options, callback ) {
-		console.log("chkng");
 		var options = options || {};
 		if(false != (data = me.checkCache(options))) {
-		console.log("chking");
 			// console.log(data);
 			if (callback) callback( data );
 		} else {
-			options.name= options.name || "";
-			console.log("chkng");
-			/*options.rank = options.rank || 1;
-			options.kingdom = options.kingdom || "";
-			options.strict = options.strict || "";
-			options.verbose = options.verbose || "";*/
-			
+			options.id = options.id || "";
+			options.rkey = options.rkey || 1;
+			options.showRanks = options.showRanks || 'kpcofgs';
 			var type = "text";
 			var format = "json";
-			var req = routeNameUsage + options.name + "?";
-			if (options.name) {
-				req += "name=" + encodeURIComponent(options.name);
+			var req = routeUsage + options.id + "?";
+			if (options.q) {
+				req += "q=" + encodeURIComponent(options.q);
 			}
-			//req += "&rank=" + options.rank + "&kingdom=" + options.kingdom + "&strict=" + options.strict  + "&verbose=" + options.verbose;
-			
-			console.log("chkng");
+			req += "&rkey=" + options.rkey + "&showRanks=" + options.showRanks;
 			needle.get(req, function(error, response, body){
-			//console.log("chkng",body);
-			console.log("chkng",response.statusCode);
 				if (response.statusCode == 200) {
-					//me.writeToCache(options.name,options.rank,body.data);
+					me.writeToCache(options.q,body.data);
 					if (callback) callback( body.data );
 				} else {
 					// error
@@ -151,7 +146,7 @@ var gbifchecklistBank = function( ocrTxt ) {
 		}
 	}
 	
-/*	this.findName = function(callback ) {
+	this.findName = function(callback ) {
 		var input = encodeURIComponent(me.ocr);
 		var type = "text";
 		var format = "json";
@@ -164,11 +159,11 @@ var gbifchecklistBank = function( ocrTxt ) {
 			}
 		}
 		, this);	
-	}*/
+	}
 	
-	/*this.navigate = function( options, callback ) {
+	this.navigate = function( options, callback ) {
 		var options = options || {};
-		options.name = options.name|| '';
+		options.id = options.id || '';
 		options.rkey = options.rkey || 1;
 		options.rank = options.rank || '';
 		options.showRanks = options.showRanks || '';
@@ -188,7 +183,7 @@ var gbifchecklistBank = function( ocrTxt ) {
 				// error
 			}
 		});
-	}*/
+	}
 };
 
 module.exports = gbifchecklistBank;
