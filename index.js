@@ -105,7 +105,7 @@ getName: function(id,limit,offset, callback) {
 var g = new gbif();
 console.log(g.name_usage.getAll() );
 
-   // LookupNameusage Service
+   // taxonLookupNameusage Service
    
    var routelookNameUsage = " http://api.gbif.org/lookup/name_usage"; // LookupNameusage Service
      this.taxonLookUp =  {
