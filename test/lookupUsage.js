@@ -5,6 +5,6 @@ var path = require( 'path' );
 var gbifChecklistBank = require('../index');
 var clb = new gbifChecklistBank();
 console.log("chkng");
-clb.gbif({"name":"Bromusinermis","rank":"SPECIES","kingdom ":"Plantae"}, function( res ) {
+clb.g.taxonLookUp.getname_usage({"name":"Bromusinermis","rank":"SPECIES","kingdom ":"Plantae"}, function( res ) {
 	console.log(res);
 });

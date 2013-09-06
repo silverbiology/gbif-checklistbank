@@ -56,7 +56,7 @@ var gbif = function( ) {
 		}
 	}
 
-getVerbatim : function (limit,offset, callback) {	                      
+ getVerbatim : function (limit,offset, callback) {	                      
 		
 	//var id = id || "";
 	var limit = limit || "" ;
@@ -155,7 +155,7 @@ console.log(g.name_usage.getAll() );
 };
 	
 	 var g = new gbif();
-console.log(g.taxonLookUp.getAll() );
+//console.log(g.taxonLookUp.getAll());
 	
   module.exports = gbifchecklistBank;
 	
