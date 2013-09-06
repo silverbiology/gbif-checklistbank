@@ -6,6 +6,6 @@ var gbifChecklistBank = require('../index');
 var clb = new gbifChecklistBank();
 console.log("chkng");
 
-clb.gbifName_usageGetVerbatim({}, {},{},function( res ) {
+clb.gbifName_usageGetVerbatim({limit:20,offset:0} ,function( res ) {
 	console.log(res);
 });
