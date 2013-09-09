@@ -2,9 +2,9 @@
 var path = require( 'path' );
 //var needle = require('needle');
 
-var gbifChecklistBank = require('../index');
-var clb = new gbifChecklistBank();
+var gbif = require('../index');
+var g = new gbif();
 console.log("chkng");
-clb.g.name_usage.getName({id}, function( res ) {
+g.name_usage.getName({},{}, function(res ) {
 	console.log(res);
-});
+	});

@@ -2,9 +2,9 @@
 var path = require( 'path' );
 //var needle = require('needle');
 
-var gbifChecklistBank = require('../index');
-var clb = new gbifChecklistBank();
+var gbif = require('../index');
+var g = new gbif();
 console.log("chkng");
-clb.g.taxonLookUp.getname_usage({"name":"Bromusinermis","rank":"SPECIES","kingdom ":"Plantae"}, function( res ) {
+g.taxonLookUp.getname_usage({"name":"Bromusinermis","rank":"SPECIES","kingdom ":"Plantae"}, function( res ) {
 	console.log(res);
 });
