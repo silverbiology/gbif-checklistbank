@@ -8,7 +8,15 @@ var gbif = function( ) {
 	var me = this;
 	var routeNameUsage = "http://api.gbif.org/name_usage";
 	var routeLookupNameUsage = "http://api.gbif.org/lookup/name_usage";
-
+	var routeNameList = "http://api.gbif.org/name_list";
+	var routeMetrics = "http://api.gbif.org/dataset_metrics/{uuid}";
+	var routeNode = "http://api.gbif.org/node";
+	var routeOrganisation = "http://api.gbif.org/organization";
+	var routeNetwork = "http://api.gbif.org/network";
+	var routeDataset = "http://api.gbif.org/dataset";
+	
+	
+	
 	this.name_usage = {
 
 		//	Lists all name usages across all checklists
@@ -17,8 +25,10 @@ var gbif = function( ) {
 		//	Paging: yes
 		getAll: function (options, callback) {
 			var req = routeNameUsage + '?' + qs.stringify(options);
+			console.log("jjh",req);
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body.results);
+				console.log("jjh",response.body);
 			});
 		},
 
@@ -42,7 +52,7 @@ var gbif = function( ) {
 		getVerbatim: function(id, callback) {
 			var req = routeNameUsage + '/' + id + '/verbatim';
 			needle.get(req, function(error, response, body){
-				if (callback) callback( error, body );
+				//if (callback) callback( error, body );
 			});
 		},
 
@@ -50,7 +60,7 @@ var gbif = function( ) {
 			var req = routeNameUsage + '/' + id + '/name';
 //console.log(req);
 			needle.get(req, function(error, response, body){
-				if (callback) callback( error, body );
+				//if (callback) callback( error, body );
 			});
 		},
 		
@@ -62,7 +72,7 @@ var gbif = function( ) {
 
 	this.lookup = {
 
-		getNameUsage: function (options, callback) {
+		getNameList: function (options, callback) {
 			var req = routeLookupNameUsage + '?' + qs.stringify(options);
 			needle.get(req, function(error, response, body){
 				if (callback) callback( error, body );
@@ -72,24 +82,79 @@ var gbif = function( ) {
 	}
 	
 	//	TODO Not available on GBIF WS yet.
-	this.name_list = {}
+	this.name_list = {
+	
+		getAllName: function (options, callback) {
+			var req = routeNameList + '?' + qs.stringify(options);
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body.results);
+			});
+		},
+
+		
+	}
 	
 	//	Gets metrics for a single checklist
-	this.dataset_metrics = function(uuid, callback) {
-	}
+	/*this.dataset_metrics = function(uuid, callback) {
+	
+		getMetrics: function(uuid, callback) {
+			if (uuid == null || isNaN(uuid) ) {
+				callback( true, { msg: 'Not a valid id' });
+				return;
+			}
+			
+			var req = routeMetrics + '/' + uuid;
+			needle.get(req, function(error, response, body){
+				if (callback) callback( error, body );
+			});
+		},
+
+	}*/
 
 	//	TODO this needs to be completed. For now ignore auth request since we do not have auth permission
-	this.node = {}
+	this.node = {
+		getNode: function (options, callback) {
+			var req = routeNode + '?' + qs.stringify(options);
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body.results);
+			});
+		},
+
+	}
 
 	//	TODO these routes need to be added
 	this.organization = {
+		getOrg: function (options, callback) {
+			var req = routeOrganisation + '?' + qs.stringify(options);
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body.results);
+			});
+		},
+
+	
 	}
 	
 	this.dataset = {
+		getDataset: function (options, callback) {
+			var req = routeDataset + '?' + qs.stringify(options);
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body.results);
+			});
+		},
+
+	
 	}
 	
 	//	TODO these routes need to be added
 	this.network = {
+		getNetwork: function (options, callback) {
+			var req = routeNetwork + '?' + qs.stringify(options);
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body.results);
+			});
+		},
+
+	
 	}
 	this.setAuth = function(token) {
 		this.authToken = token;
