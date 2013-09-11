@@ -27,11 +27,13 @@ var gbif = function( ) {
 			var req = routeNameUsage + '?' + qs.stringify(options);
 			console.log("jjh",req);
 			needle.get(req, function(error,response,body){
-			console.log("hjhh",response.body);
+			
+			
+			console.log("response",response);
 			console.log("err",error);
 		
 			
-				if (callback) callback( body);
+			if (callback) callback(body);
 				
 			});	
   
@@ -58,7 +60,7 @@ var gbif = function( ) {
 		getVerbatim: function(id, callback) {
 			var req = routeNameUsage + '/' + id + '/verbatim';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback( error, body );
+				if (callback) callback( error, body );
 			});
 		},
 
@@ -100,8 +102,9 @@ var gbif = function( ) {
 		
 	}
 	
+	//some problem with dataset metrics........
 	//	Gets metrics for a single checklist
-	this.dataset_metrics = function(uuid, callback) {
+	/*this.dataset_metrics = function(uuid, callback) {
 	
 		getMetrics: function(uuid, callback) {
 			if (uuid == null || isNaN(uuid) ) {
@@ -115,7 +118,7 @@ var gbif = function( ) {
 			});
 		},
 
-	}
+	}*/
 
 	//	TODO this needs to be completed. For now ignore auth request since we do not have auth permission
 	this.node = {
@@ -133,7 +136,7 @@ var gbif = function( ) {
 		getOrg: function (options, callback) {
 			var req = routeOrganisation + '?' + qs.stringify(options);
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				//if (callback) callback(error, body.results);
 			});
 		},
 
@@ -162,6 +165,8 @@ var gbif = function( ) {
 
 	
 	}
+	
+	//doubt?
 	this.setAuth = function(token) {
 		this.authToken = token;
 	}
