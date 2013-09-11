@@ -26,11 +26,17 @@ var gbif = function( ) {
 		getAll: function (options, callback) {
 			var req = routeNameUsage + '?' + qs.stringify(options);
 			console.log("jjh",req);
-			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
-				console.log("jjh",response.body);
-			});
+			needle.get(req, function(error,response,body){
+			console.log("hjhh",response.body);
+			console.log("err",error);
+		
+			
+				if (callback) callback( body);
+				
+			});	
+  
 		},
+		
 
 		//	Gets the single name usage
 		//	Params: language (default=en)
@@ -95,7 +101,7 @@ var gbif = function( ) {
 	}
 	
 	//	Gets metrics for a single checklist
-	/*this.dataset_metrics = function(uuid, callback) {
+	this.dataset_metrics = function(uuid, callback) {
 	
 		getMetrics: function(uuid, callback) {
 			if (uuid == null || isNaN(uuid) ) {
@@ -109,7 +115,7 @@ var gbif = function( ) {
 			});
 		},
 
-	}*/
+	}
 
 	//	TODO this needs to be completed. For now ignore auth request since we do not have auth permission
 	this.node = {
