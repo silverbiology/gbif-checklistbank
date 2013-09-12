@@ -638,6 +638,25 @@ var gbif = function( ) {
 				if (callback) callback(error, body.results);
 			});
 		},
+		getDataSetTag: function (options, callback) {
+			var req = routeDataset + '?' + qs.stringify(options);
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body.results);
+			});
+		},
+		getDataSetMachineTag: function (options, callback) {
+			var req = routeDataset + '?' + qs.stringify(options);
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body.results);
+			});
+		},
+		getDataSetComment: function (options, callback) {
+			var req = routeDataset + '?' + qs.stringify(options);
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body.results);
+			});
+		},
+		
 	}
 	
 	//doubt?

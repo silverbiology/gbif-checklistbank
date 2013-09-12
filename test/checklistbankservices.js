@@ -335,4 +335,17 @@ g.dataset.getDataSetIdentifier({limit:20,offset:0}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
+g.dataset.getDataSetTag({limit:20,offset:0}, function(res) {
+	console.log("fhgfhg",res);
+
+	});
+g.dataset.getDataSetMachineTag({limit:20,offset:0}, function(res) {
+	console.log("fhgfhg",res);
+
+	});
+g.dataset.getDataSetComment({limit:20,offset:0}, function(res) {
+	console.log("fhgfhg",res);
+
+	});
 	
+
