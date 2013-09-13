@@ -18,7 +18,7 @@ g.name_usage.getByID(id, null, function(err, res) {
 });
 
 
-g.name_usage.getVerbatim ({limit:20,offset:0} ,function( res ) {
+g.name_usage.getVerbatim (function( res ) {
 	console.log("hi",res);
 });
 
@@ -58,27 +58,27 @@ g.name_usage.getDescriptions (function( res ) {
 	console.log("fhgfhg",res);
 });
 
-g.name_usage.getDistributions ({limit:20,offset:0} ,function( res ) {
+g.name_usage.getDistributions (function( res ) {
 	console.log("fhgfhg",res);
 });
 
-g.name_usage.getImages ({limit:20,offset:0} ,function( res ) {
+g.name_usage.getImages (function( res ) {
 	console.log("hi",res);
 });
 
-g.name_usage.getReferences ({limit:20,offset:0} ,function( res ) {
+g.name_usage.getReferences (function( res ) {
 	console.log("hi",res);
 });
 
-g.name_usage.getSpecies ({limit:20,offset:0} ,function( res ) {
+g.name_usage.getSpecies (function( res ) {
 	console.log("hi",res);
 });
 
-g.name_usage.getVernacular ({limit:20,offset:0} ,function( res ) {
+g.name_usage.getVernacular (function( res ) {
 	console.log("hi",res);
 });
 
-g.name_usage.getTypeSpecimens ({limit:20,offset:0} ,function( res ) {
+g.name_usage.getTypeSpecimens (function( res ) {
 	console.log("hi",res);
 });
 
@@ -89,6 +89,7 @@ g.lookup.getNameList({"name":"Bromusinermis","rank":"SPECIES","kingdom ":"Planta
 	console.log("fhgfhg",res);
 });
 
+/*
 //searchservice
 g.searchservice.getSearch({"canonical_name":"Gastrotricha","description":"Dryad welcomes data submissions related to published, or accepted, scholarly publications","kingdom ":"Plantae","kingdom":"Archaea","phylum":"Ciliophora","scientificName":"Protozoa","vernacularName":"Gastrotrichs",}, function(res) {
 	console.log("fhgfhg",res);
@@ -109,16 +110,16 @@ g.taxonLookUp.getname_usage({"name":"Bromusinermis","rank":"SPECIES","kingdom ":
 */
 
 //name_list
-
+/*
 g.name_list.getAllName({"user":"gm"}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.name_list.getIntList({limit:20,offset:0}, function(res) {
+/*g.name_list.getIntList(function(res) {
 	console.log("fhgfhg",res);
 
-	});
+	});*/
 	
 //dataset_metrics(doubt about q)
 //someproblem with dataset metrics
@@ -128,15 +129,17 @@ g.name_list.getIntList({limit:20,offset:0}, function(res) {
 
 //node(doubt about q)
 
-var q = "Animalia";
+/*var q = "Animalia";
 g.node.getNode(q , function(res) {
 	console.log("fhgfhg",res);
 
 	});
-g.node.getGetsNode({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.node.getGetsNode({UUID,function(err, res) {
+	console.log("Get Name:", UUID);
+	console.log(err, res);
+});
 
-	});
+
 
 g.node.getNodeOrg({limit:20,offset:0}, function(res) {
 	console.log("fhgfhg",res);
@@ -212,7 +215,7 @@ g.organization.getOrg(q , country , function(res) {
 	});
 	
 */
-g.organization .getOrganisation({limit:20,offset:0}, function(res) {
+/*g.organization .getOrganisation({limit:20,offset:0}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
@@ -270,7 +273,7 @@ g.organization .getOrgPublishing({limit:20,offset:0}, function(res) {
 	console.log("fhgfhg",res);
 
 	});	
-
+*/
 //network
 /*var q = ?
 g.network.getNetwork(q , function(res) {
@@ -278,7 +281,7 @@ g.network.getNetwork(q , function(res) {
 
 	});
 */
-g.network.getGetNetwork({limit:20,offset:0}, function(res) {
+/*g.network.getGetNetwork({limit:20,offset:0}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
@@ -309,6 +312,7 @@ g.network.getNetworkComment({limit:20,offset:0}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
+	*/
 
 //dataset(doubt about q,type,country)
 /*var q = 3;
@@ -319,7 +323,7 @@ g.dataset.getDataset(q , function(res) {
 
 	});
 */
-g.dataset.getGetDataSet({limit:20,offset:0}, function(res) {
+/*g.dataset.getGetDataSet({limit:20,offset:0}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
@@ -348,4 +352,8 @@ g.dataset.getDataSetComment({limit:20,offset:0}, function(res) {
 
 	});
 	
+g.dataset.getDataSetConstituents({limit:20,offset:0}, function(res) {
+	console.log("fhgfhg",res);
 
+	});
+	*/
