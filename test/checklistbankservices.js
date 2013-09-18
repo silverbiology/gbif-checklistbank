@@ -5,86 +5,86 @@ var g = new gbif();
 console.log("Test Name Usage Commands:");
 
 
-g.name_usage.getAll({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function(res) {
-	console.log("fhgfhg",res);
+g.name_usage.getAll({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function(error,body) {
+	console.log(error,body);
 
 });
 	
 var id = 1;
 
-g.name_usage.getByID(id, null, function(err, res) {
-	console.log(id, err, res);
+g.name_usage.getByID(id, null, function(error,body) {
+	console.log(id, error,body);
 });
 
 
-g.name_usage.getVerbatim (function( res ) {
-	console.log("hi",res);
+g.name_usage.getVerbatim (function( error,body ) {
+	console.log("hi",error,body);
 });
 
 
-g.name_usage.getName(id, function(err, res) {
+g.name_usage.getName(id, function(error,body) {
 	console.log("Get Name:", id);
-	console.log(err, res);
+	console.log(error,body);
 });
 
 
-g.name_usage.getParents({"language":"en"}, function(res) {
-	console.log("fhgfhg",res);
+g.name_usage.getParents({"language":"en"}, function(error,body) {
+	console.log(error,body);
 	});
 	
-g.name_usage.getChildren({"language":"en"}, function(res) {
-	console.log("fhgfhg",res);
-
-	});
-	
-g.name_usage.getDescendants({"language":"en","rank":"PHYLUM"}, function(res) {
-	console.log("fhgfhg",res);
+g.name_usage.getChildren({"language":"en"}, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.name_usage.getRelated({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function(res) {
-	console.log("fhgfhg",res);
+g.name_usage.getDescendants({"language":"en","rank":"PHYLUM"}, function( error,body) {
+	console.log( error,body);
 
 	});
 	
-g.name_usage.getSynonyms({"language":"en"}, function(res) {
-	console.log("fhgfhg",res);
+g.name_usage.getRelated({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function( error,body) {
+	console.log( error,body);
 
 	});
 	
-g.name_usage.getDescriptions (function( res ) {
-	console.log("fhgfhg",res);
+g.name_usage.getSynonyms({"language":"en"}, function( error,body) {
+	console.log( error,body);
+
+	});
+	
+g.name_usage.getDescriptions (function(  error,body ) {
+	console.log( error,body);
 });
 
-g.name_usage.getDistributions (function( res ) {
-	console.log("fhgfhg",res);
+g.name_usage.getDistributions (function(  error,body ) {
+	console.log( error,body);
 });
 
-g.name_usage.getImages (function( res ) {
-	console.log("hi",res);
+g.name_usage.getImages (function(  error,body ) {
+	console.log( error,body);
 });
 
-g.name_usage.getReferences (function( res ) {
-	console.log("hi",res);
+g.name_usage.getReferences (function(  error,body ) {
+	console.log( error,body);
 });
 
-g.name_usage.getSpecies (function( res ) {
-	console.log("hi",res);
+g.name_usage.getSpecies (function( error,body ) {
+	console.log( error,body);
 });
 
-g.name_usage.getVernacular (function( res ) {
-	console.log("hi",res);
+g.name_usage.getVernacular (function(  error,body ) {
+	console.log( error,body);
 });
 
-g.name_usage.getTypeSpecimens (function( res ) {
-	console.log("hi",res);
+g.name_usage.getTypeSpecimens (function( error,body) {
+	console.log("hi", error,body);
 });
 
 
 //taxon lookup
 
-g.lookup.getNameList({"name":"Bromusinermis","rank":"SPECIES","kingdom ":"Plantae"}, function(res) {
-	console.log("fhgfhg",res);
+g.lookup.getNameList({"name":"Elymus arenarius"}, function(error,body) {
+	console.log("fhgfhg",body);
 });
 
 /*
@@ -94,18 +94,6 @@ g.searchservice.getSearch({"canonical_name":"Gastrotricha","description":"Dryad 
 });
 
 
-/*
-fix before testing
-
-g.name_usage.getAll({"sourceId":"119459225","language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function( res ) {
-	console.log(res);
-	});
-	
-g.taxonLookUp.getname_usage({"name":"Bromusinermis","rank":"SPECIES","kingdom ":"Plantae"}, function( res ) {
-	console.log(res);
-});
-
-*/
 
 //name_list
 /*
@@ -132,73 +120,75 @@ g.node.getNode(q , function(res) {
 	console.log("fhgfhg",res);
 
 	});
-g.node.getGetsNode({UUID,function(err, res) {
+/*g.node.getGetsNode({UUID,function(err, res) {
 	console.log("Get Name:", UUID);
+	console.log(err, res);
+});*/
+
+
+
+/*g.node.getNodeOrg(id, function(err, res) {
+//	console.log("Get Name:", id);
 	console.log(err, res);
 });
 
 
+	
+g.node.getNodeContact(id, function(err, res) {
+	console.log(res);
 
-g.node.getNodeOrg({limit:20,offset:0}, function(res) {
+	});
+	
+g.node.getNodeEndPoint(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.node.getNodeContact({limit:20,offset:0}, function(res) {
+g.node.getNodeIdentifier(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.node.getNodeEndPoint({limit:20,offset:0}, function(res) {
+g.node.getNodeTag( id,function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.node.getNodeIdentifier({limit:20,offset:0}, function(res) {
+g.node.getNodeMachineTag(id ,function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.node.getNodeTag({limit:20,offset:0}, function(res) {
+g.node.getNodeComment(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.node.getNodeMachineTag({limit:20,offset:0}, function(res) {
+g.node.getNodeEndorsement( id ,function(res) {
+	console.log("fhgfhg",res);
+
+	});
+g.node.getNodePEndorsement( id ,function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.node.getNodeComment({limit:20,offset:0}, function(res) {
+g.node.getNodeCountry(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-	g.node.getNodeEndorsement({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
-
-	});
-	g.node.getNodePEndorsement({limit:20,offset:0}, function(res) {
+g.node.getNodeCountryIso(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.node.getNodeCountry({limit:20,offset:0}, function(res) {
+g.node.getNodeDataset( id ,function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.node.getNodeCountryIso({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
-
-	});
-	
-g.node.getNodeDataset({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
-
-	});
-	
-g.node.getNodeInstallation({limit:20,offset:0}, function(res) {
+g.node.getNodeInstallation( id ,function(res) {
 	console.log("fhgfhg",res);
 
 	});
@@ -213,61 +203,61 @@ g.organization.getOrg(q , country , function(res) {
 	});
 	
 */
-/*g.organization .getOrganisation({limit:20,offset:0}, function(res) {
+/*g.organization .getOrganisation(id, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.organization .getOrgcontact({limit:20,offset:0}, function(res) {
+g.organization .getOrgcontact(id, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.organization .getOrgEndpoint({limit:20,offset:0}, function(res) {
+g.organization .getOrgEndpoint(id, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.organization .getOrgIdentifier({limit:20,offset:0}, function(res) {
+g.organization .getOrgIdentifier(id, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.organization .getOrgTag({limit:20,offset:0}, function(res) {
+g.organization .getOrgTag(id, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.organization .getOrgMachineTag({limit:20,offset:0}, function(res) {
+g.organization .getOrgMachineTag(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.organization .getOrgComment({limit:20,offset:0}, function(res) {
+g.organization .getOrgComment(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.organization .getOrgHostedDataset({limit:20,offset:0}, function(res) {
+g.organization .getOrgHostedDataset(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});	
 	
-g.organization .getOrgOwnedDataset({limit:20,offset:0}, function(res) {
+g.organization .getOrgOwnedDataset(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});	
 	
-g.organization .getOrgInstallation({limit:20,offset:0}, function(res) {
+g.organization .getOrgInstallation(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});	
 	
-g.organization .getOrgPending({limit:20,offset:0}, function(res) {
+g.organization .getOrgPending(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});	
-g.organization .getOrgPublishing({limit:20,offset:0}, function(res) {
+g.organization .getOrgPublishing(id , function(res) {
 	console.log("fhgfhg",res);
 
 	});	
