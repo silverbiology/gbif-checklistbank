@@ -5,7 +5,7 @@ var g = new gbif();
 console.log("Test Name Usage Commands:");
 
 
-g.name_usage.getAll({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function(res) {
+g.species.getAll({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
@@ -13,72 +13,72 @@ g.name_usage.getAll({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099
 	
 var id = 1;
 
-g.name_usage.getByID(id, null, function(err, res) {
+g.species.getByID(id, null, function(err, res) {
 	console.log(id, err, res);
 });
 
 
-g.name_usage.getVerbatim (function( res ) {
+g.species.getVerbatim (function( res ) {
 	console.log("hi",res);
 });
 
 
-g.name_usage.getName(id, function(err, res) {
+g.species.getName(id, function(err, res) {
 	console.log("Get Name:", id);
 	console.log(err, res);
 });
 
 
-g.name_usage.getParents({"language":"en"}, function(res) {
+g.species.getParents({"language":"en"}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.name_usage.getChildren({"language":"en"}, function(res) {
+g.species.getChildren({"language":"en"}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.name_usage.getDescendants({"language":"en","rank":"PHYLUM"}, function(res) {
+g.species.getDescendants ({"language":"en","rank":"PHYLUM"}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.name_usage.getRelated({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function(res) {
+g.species.getRelated ({"language":"en","datasetKey":"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.name_usage.getSynonyms({"language":"en"}, function(res) {
+g.species.getSynonyms ({"language":"en"}, function(res) {
 	console.log("fhgfhg",res);
 
 	});
 	
-g.name_usage.getDescriptions (function( res ) {
+g.species.getDescriptions (function( res ) {
 	console.log("fhgfhg",res);
 });
 
-g.name_usage.getDistributions (function( res ) {
+g.species.getDistributions (function( res ) {
 	console.log("fhgfhg",res);
 });
 
-g.name_usage.getImages (function( res ) {
+g.species.getImages (function( res ) {
 	console.log("hi",res);
 });
 
-g.name_usage.getReferences (function( res ) {
+g.species.getReferences (function( res ) {
 	console.log("hi",res);
 });
 
-g.name_usage.getSpecies (function( res ) {
+g.species.getSpecies (function( res ) {
 	console.log("hi",res);
 });
 
-g.name_usage.getVernacular (function( res ) {
+g.species.getVernacular (function( res ) {
 	console.log("hi",res);
 });
 
-g.name_usage.getTypeSpecimens (function( res ) {
+g.species.getTypeSpecimens (function( res ) {
 	console.log("hi",res);
 });
 

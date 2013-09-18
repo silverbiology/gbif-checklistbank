@@ -6,7 +6,7 @@ var gbif = function( ) {
 	var needle = require('needle');
 	var qs = require('querystring');
 	var me = this;
-	var routeNameUsage = "http://api.gbif.org/name_usage";
+	var routeNameUsage = "http://api.gbif.org/species";
 	var routeLookupNameUsage = "http://api.gbif.org/lookup/name_usage";
 	var routeSearchService = "http://api.gbif.org/name_usage/search";
 	var routeNameList = "http://api.gbif.org/name_list";
@@ -18,7 +18,7 @@ var gbif = function( ) {
 	
 	
 	
-	this.name_usage = {
+	this.species = {
 
 		//	Lists all name usages across all checklists
 		//	Params: language (default=en), datasetKey, sourceId
