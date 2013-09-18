@@ -258,48 +258,49 @@ var gbif = function( ) {
 	}
 */
 	//	TODO this needs to be completed. For now ignore auth request since we do not have auth permission
-	/*this.node = {
+	this.node = {
 	
 		getNode: function (options, callback) {
 			var req = routeNode + '?' + qs.stringify(options);
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		//var UUID = 1;  Dnt knw the value of UUID & passing of "UUID" as a parameter causes error so instead of UUID im giving the id..
-		getGetsNode: function (id, callback) {
-			var req = routeNode + '/' + id + '/node';
+		
+		getGetsNode: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/node';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		getNodeOrg: function (id, callback) {
 			var req = routeNode + '/' + id + '/org';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		getNodeContact: function (id, callback) {
 			var req = routeNode + '/' + id + '/Contact';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		getNodeEndPoint: function (id, callback) {
 			var req = routeNode + '/' + id + '/EndPoint';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		getNodeIdentifier: function (id, callback) {
 			var req = routeNode + '/' + id + '/Identifier';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
@@ -307,33 +308,33 @@ var gbif = function( ) {
 		getNodeTag: function (id, callback) {
 			var req = routeNode + '/' + id + '/tag';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		getNodeMachineTag: function (id, callback) {
 			var req = routeNode + '/' + id + '/MachineTag';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 	
 		getNodeComment: function (id, callback) {
 			var req = routeNode + '/' + id + '/Comment';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 	   getNodeEndorsement: function (id, callback) {
 			var req = routeNode + '/' + id + '/Endorsement';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		getNodePEndorsement: function (id, callback) {
 			var req = routeNode + '/' + id + '/PEndorsement';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 	
@@ -341,21 +342,21 @@ var gbif = function( ) {
 		getNodeCountry: function (id, callback) {
 			var req = routeNode + '/' + id + '/Country';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		getNodeCountryIso: function (id, callback) {
 			var req = routeNode + '/' + id + '/CountryIso';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 	
 		getNodeDataset: function (id, callback) {
 			var req = routeNode + '/' + id + '/Dataset';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
@@ -363,12 +364,12 @@ var gbif = function( ) {
 		getNodeInstallation: function (id, callback) {
 			var req = routeNode + '/' + id + '/Installation';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 	
 	}
-/*
+
 	//	TODO these routes need to be added
 	this.organization = {
 		getOrg: function (options, callback) {
@@ -465,7 +466,9 @@ var gbif = function( ) {
 		},
 		
 	}
-	
+/*	
+        have to correct parameter passing..
+
 	//	TODO these routes need to be added
 	this.network = {
 		getNetwork: function (id, callback) {

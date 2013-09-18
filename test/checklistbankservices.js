@@ -120,76 +120,78 @@ g.node.getNode(q , function(res) {
 	console.log("fhgfhg",res);
 
 	});
-/*g.node.getGetsNode({UUID,function(err, res) {
+*/	
+var UUID = 2;
+g.node.getGetsNode( UUID , function(error,body) {
 	console.log("Get Name:", UUID);
-	console.log(err, res);
-});*/
+	console.log(error,body);
+});
 
 
 
-/*g.node.getNodeOrg(id, function(err, res) {
+g.node.getNodeOrg(UUID, function(error,body) {
 //	console.log("Get Name:", id);
-	console.log(err, res);
+	console.log(error,body);
 });
 
 
 	
-g.node.getNodeContact(id, function(err, res) {
-	console.log(res);
+g.node.getNodeContact(id, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeEndPoint(id , function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeEndPoint(id , function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeIdentifier(id , function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeIdentifier(id , function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeTag( id,function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeTag( id,function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeMachineTag(id ,function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeMachineTag(id ,function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeComment(id , function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeComment(id , function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeEndorsement( id ,function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeEndorsement( id ,function(error,body) {
+	console.log(error,body);
 
 	});
-g.node.getNodePEndorsement( id ,function(res) {
-	console.log("fhgfhg",res);
-
-	});
-	
-g.node.getNodeCountry(id , function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodePEndorsement( id ,function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeCountryIso(id , function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeCountry(id , function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeDataset( id ,function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeCountryIso(id , function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeInstallation( id ,function(res) {
-	console.log("fhgfhg",res);
+g.node.getNodeDataset( id ,function(error,body) {
+	console.log("fhgfhg",error,body);
+
+	});
+	
+g.node.getNodeInstallation( id ,function(error,body) {
+	console.log(error,body);
 
 	});
 	
