@@ -72,125 +72,139 @@ g.name_usage.getSpecies (function( error,body ) {
 	console.log( error,body);
 });
 
-g.name_usage.getVernacular (function(  error,body ) {
-	console.log( error,body);
+g.name_usage.getVernacular (function( res ) {
+	//console.log( error,body);
+	//console.log(error,body);
+	//console.log(res);
+	if(res['success']) {
+		
+	}
 });
 
-g.name_usage.getTypeSpecimens (function( error,body) {
-	console.log("hi", error,body);
+g.name_usage.getTypeSpecimens (function( res) {
+	//console.log("hi", error,body);
+	//console.log(error,body);
+	//console.log(res);
+	if(res['success']) {
+		
+	}
 });
 
 
 //taxon lookup
 
-g.lookup.getNameList({"name":"Elymus arenarius"}, function(error,body) {
-	console.log("fhgfhg",body);
+g.lookup.getNameList({"name":"Elymus arenarius"}, function(res) {
+	//console.log(error,body);
+	//console.log(res);
+	if(res['success']) {
+		
+	}
 });
 
 /*
 //searchservice
-g.searchservice.getSearch({"canonical_name":"Gastrotricha","description":"Dryad welcomes data submissions related to published, or accepted, scholarly publications","kingdom ":"Plantae","kingdom":"Archaea","phylum":"Ciliophora","scientificName":"Protozoa","vernacularName":"Gastrotrichs",}, function(res) {
-	console.log("fhgfhg",res);
+g.searchservice.getSearch({"canonical_name":"Gastrotricha","description":"Dryad welcomes data submissions related to published, or accepted, scholarly publications","kingdom ":"Plantae","kingdom":"Archaea","phylum":"Ciliophora","scientificName":"Protozoa","vernacularName":"Gastrotrichs",}, function(error,body) {
+	console.log(error,body);
 });
 
 
 
 //name_list
 /*
-g.name_list.getAllName({"user":"gm"}, function(res) {
-	console.log("fhgfhg",res);
+g.name_list.getAllName({"user":"gm"}, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-/*g.name_list.getIntList(function(res) {
-	console.log("fhgfhg",res);
+/*g.name_list.getIntList(function(error,body) {
+	console.log(error,body);
 
 	});*/
 	
 //dataset_metrics(doubt about q)
 //someproblem with dataset metrics
 /*g.dataset_metrics.getMetrics ({limit:20,offset:0} ,function( res ) {
-	console.log("fhgfhg",res);
+	console.log(error,body);
 });*/
 
 //node(doubt about q)
 
 /*var q = "Animalia";
-g.node.getNode(q , function(res) {
-	console.log("fhgfhg",res);
+g.node.getNode(q , function(error,body) {
+	console.log(error,body);
 
 	});
 */	
-var UUID = 2;
+/*var UUID = 82;
 g.node.getGetsNode( UUID , function(error,body) {
 	console.log("Get Name:", UUID);
 	console.log(error,body);
 });
 
 
-
-g.node.getNodeOrg(UUID, function(error,body) {
-//	console.log("Get Name:", id);
+var organisation = "UniversitÃ© de Bangui (Central African Republic)";
+g.node.getNodeOrg(UUID, organisation, function(error,body) {
+//	console.log("Get Name:", UUID);
 	console.log(error,body);
 });
 
 
 	
-g.node.getNodeContact(id, function(error,body) {
+g.node.getNodeContact(UUID, function(error,body) {
 	console.log(error,body);
 
 	});
 	
-g.node.getNodeEndPoint(id , function(error,body) {
+g.node.getNodeEndPoint(UUID, function(error,body) {
 	console.log(error,body);
 
 	});
 	
-g.node.getNodeIdentifier(id , function(error,body) {
+g.node.getNodeIdentifier( UUID , function(error,body) {
 	console.log(error,body);
 
 	});
 	
-g.node.getNodeTag( id,function(error,body) {
+g.node.getNodeTag( UUID,function(error,body) {
 	console.log(error,body);
 
 	});
 	
-g.node.getNodeMachineTag(id ,function(error,body) {
+g.node.getNodeMachineTag(UUID ,function(error,body) {
 	console.log(error,body);
 
 	});
 	
-g.node.getNodeComment(id , function(error,body) {
+g.node.getNodeComment(UUID , function(error,body) {
 	console.log(error,body);
 
 	});
 	
-g.node.getNodeEndorsement( id ,function(error,body) {
+g.node.getNodeEndorsement(UUID ,function(error,body) {
 	console.log(error,body);
 
 	});
-g.node.getNodePEndorsement( id ,function(error,body) {
-	console.log(error,body);
-
-	});
-	
-g.node.getNodeCountry(id , function(error,body) {
+g.node.getNodePEndorsement( UUID ,function(error,body) {
 	console.log(error,body);
 
 	});
 	
-g.node.getNodeCountryIso(id , function(error,body) {
+g.node.getNodeCountry(UUID , function(error,body) {
 	console.log(error,body);
 
 	});
 	
-g.node.getNodeDataset( id ,function(error,body) {
-	console.log("fhgfhg",error,body);
+g.node.getNodeCountryIso(UUID , function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.node.getNodeInstallation( id ,function(error,body) {
+g.node.getNodeDataset( UUID ,function(error,body) {
+	console.log(error,body);
+
+	});
+	
+g.node.getNodeInstallation( UUID ,function(error,body) {
 	console.log(error,body);
 
 	});
@@ -200,150 +214,154 @@ g.node.getNodeInstallation( id ,function(error,body) {
 /*var q = ?;
 var country ="?"
 g.organization.getOrg(q , country , function(res) {
-	console.log("fhgfhg",res);
+	console.log(error,body);
 
 	});
 	
 */
-/*g.organization .getOrganisation(id, function(res) {
-	console.log("fhgfhg",res);
+/*var UUID = 6;
+g.organization .getOrganisation(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.organization .getOrgcontact(id, function(res) {
-	console.log("fhgfhg",res);
+g.organization.getOrgcontact(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.organization .getOrgEndpoint(id, function(res) {
-	console.log("fhgfhg",res);
+g.organization.getOrgEndpoint(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.organization .getOrgIdentifier(id, function(res) {
-	console.log("fhgfhg",res);
+g.organization.getOrgIdentifier(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.organization .getOrgTag(id, function(res) {
-	console.log("fhgfhg",res);
+g.organization .getOrgTag(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.organization .getOrgMachineTag(id , function(res) {
-	console.log("fhgfhg",res);
+g.organization .getOrgMachineTag(UUID , function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.organization .getOrgComment(id , function(res) {
-	console.log("fhgfhg",res);
+g.organization .getOrgComment(UUID , function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.organization .getOrgHostedDataset(id , function(res) {
-	console.log("fhgfhg",res);
+g.organization .getOrgHostedDataset(UUID , function(error,body) {
+	console.log(error,body);
 
 	});	
 	
-g.organization .getOrgOwnedDataset(id , function(res) {
-	console.log("fhgfhg",res);
+g.organization .getOrgOwnedDataset(UUID , function(error,body) {
+	console.log(error,body);
 
 	});	
 	
-g.organization .getOrgInstallation(id , function(res) {
-	console.log("fhgfhg",res);
+g.organization .getOrgInstallation(UUID , function(error,body) {
+	console.log(error,body);
 
 	});	
 	
-g.organization .getOrgPending(id , function(res) {
-	console.log("fhgfhg",res);
+g.organization .getOrgPending(UUID , function(error,body) {
+	console.log(error,body);
 
 	});	
-g.organization .getOrgPublishing(id , function(res) {
-	console.log("fhgfhg",res);
+g.organization .getOrgPublishing(UUID , function(error,body) {
+	console.log(error,body);
 
 	});	
-*/
+
 //network
 /*var q = ?
-g.network.getNetwork(q , function(res) {
-	console.log("fhgfhg",res);
+g.network.getNetwork(q , function(error,body) {
+	console.log(error,body);
 
 	});
 */
-/*g.network.getGetNetwork({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+
+/*var UUID =  6;
+g.network.getGetNetwork( UUID ,function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.network.getNetworkContact({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.network.getNetworkContact(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-g.network.getNetworkEndpoint({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.network.getNetworkEndpoint(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.network.getNetworkIdentifier({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.network.getNetworkIdentifier( UUID, function(error,body) {
+	console.log(error,body);
 
 	});
 
-g.network.getNetworkTag({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.network.getNetworkTag( UUID ,function(error,body) {
+	console.log(error,body);
 
 	});
-g.network.getNetworkMachineTag({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.network.getNetworkMachineTag(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-g.network.getNetworkComment({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.network.getNetworkComment(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-	*/
+
 
 //dataset(doubt about q,type,country)
 /*var q = 3;
 var type = ?;
 var country = ?;
-g.dataset.getDataset(q , function(res) {
-	console.log("fhgfhg",res);
+g.dataset.getDataset(q , function(error,body) {
+	console.log(error,body);
 
 	});
 */
-/*g.dataset.getGetDataSet({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+/*g.dataset.getGetDataSet( UUID ,function(error,body) {
+	console.log(error,body);
 
 	});
-g.dataset.getDataSetContact({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.dataset.getDataSetContact(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-g.dataset.getDataSetEndpoint({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.dataset.getDataSetEndpoint(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-g.dataset.getDataSetIdentifier({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.dataset.getDataSetIdentifier(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-g.dataset.getDataSetTag({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.dataset.getDataSetTag(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-g.dataset.getDataSetMachineTag({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.dataset.getDataSetMachineTag(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-g.dataset.getDataSetComment({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.dataset.getDataSetComment(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
 	
-g.dataset.getDataSetConstituents({limit:20,offset:0}, function(res) {
-	console.log("fhgfhg",res);
+g.dataset.getDataSetConstituents(UUID, function(error,body) {
+	console.log(error,body);
 
 	});
-	*/
+	
+*/

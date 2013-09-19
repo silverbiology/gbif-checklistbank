@@ -149,7 +149,12 @@ var gbif = function( ) {
 		getReferences: function (id, callback) {
 			var req = routeNameUsage + '/' + id + '/references';;
 			needle.get(req, function(error,response,body){
-				if (callback) callback( error,body);
+				
+				if(error) {
+					if (callback) callback( {success:false,error:error} );
+				} else {
+					if (callback) callback( {success:true,results:body} );
+				}
 				
 			});	
   
@@ -159,7 +164,11 @@ var gbif = function( ) {
 			var req = routeNameUsage+ '/' + id + '/species';
 			needle.get(req, function(error,response,body){
 			
-				if (callback) callback( error,body);
+				if(error) {
+					if (callback) callback( {success:false,error:error} );
+				} else {
+					if (callback) callback( {success:true,results:body} );
+				}
 				
 			});	
   
@@ -168,7 +177,11 @@ var gbif = function( ) {
 		getVernacular: function (id, callback) {
 			var req = routeNameUsage + '/' + id + '/vernacular';
 			needle.get(req, function(error,response,body){
-				if (callback) callback( error,body);
+				if(error) {
+					if (callback) callback( {success:false,error:error} );
+				} else {
+					if (callback) callback( {success:true,results:body} );
+				}
 				
 			});	
   
@@ -178,7 +191,11 @@ var gbif = function( ) {
 			var req = routeNameUsage + '/' + id + '/typespecimens';
 			needle.get(req, function(error,response,body){
 			
-				if (callback) callback( error,body);
+				if(error) {
+					if (callback) callback( {success:false,error:error} );
+				}else {
+					if (callback) callback( {success:true,results:body,totalCount: body.length} );
+				}
 				
 			});	
   
@@ -198,7 +215,12 @@ var gbif = function( ) {
 			var req = routeLookupNameUsage + '?' + qs.stringify(options);
 			console.log("isfggggggggggggggggggggggggggggggg",req);
 			needle.get(req, function(error, response, body){
-				if (callback) callback( error, body );
+			//console.log(body);
+				if(error) {
+					if (callback) callback( {success:false,error:error} );
+				}else {
+					if (callback) callback( {success:true,results:body,totalCount: body.length} );
+				}
 			});
 		}
 
@@ -223,7 +245,7 @@ var gbif = function( ) {
 		getAllName: function (options, callback) {
 			var req = routeNameList + '?' + qs.stringify(options);
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
@@ -231,7 +253,7 @@ var gbif = function( ) {
 		/*getIntList: function (callback) {
 			var req = routeNameList+ '/' 1 ;
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 			}
 		},
@@ -258,7 +280,7 @@ var gbif = function( ) {
 	}
 */
 	//	TODO this needs to be completed. For now ignore auth request since we do not have auth permission
-	this.node = {
+	/*this.node = {
 	
 		getNode: function (options, callback) {
 			var req = routeNode + '?' + qs.stringify(options);
@@ -276,93 +298,93 @@ var gbif = function( ) {
 			});
 		},
 		
-		getNodeOrg: function (id, callback) {
-			var req = routeNode + '/' + id + '/org';
+		getNodeOrg: function (UUID, organisation, callback) {
+			var req = routeNode + '/' + UUID + '/org';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
 		
-		getNodeContact: function (id, callback) {
-			var req = routeNode + '/' + id + '/Contact';
+		getNodeContact: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/Contact';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
 		
-		getNodeEndPoint: function (id, callback) {
-			var req = routeNode + '/' + id + '/EndPoint';
+		getNodeEndPoint: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/EndPoint';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
 		
-		getNodeIdentifier: function (id, callback) {
-			var req = routeNode + '/' + id + '/Identifier';
+		getNodeIdentifier: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/identifier';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
 		
 		
-		getNodeTag: function (id, callback) {
-			var req = routeNode + '/' + id + '/tag';
+		getNodeTag: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/tag';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
 		
-		getNodeMachineTag: function (id, callback) {
-			var req = routeNode + '/' + id + '/MachineTag';
+		getNodeMachineTag: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/MachineTag';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
 	
-		getNodeComment: function (id, callback) {
-			var req = routeNode + '/' + id + '/Comment';
+		getNodeComment: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/Comment';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
-	   getNodeEndorsement: function (id, callback) {
-			var req = routeNode + '/' + id + '/Endorsement';
+	   getNodeEndorsement: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/Endorsement';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
-		getNodePEndorsement: function (id, callback) {
-			var req = routeNode + '/' + id + '/PEndorsement';
-			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body);
-			});
-		},
-	
-	
-		getNodeCountry: function (id, callback) {
-			var req = routeNode + '/' + id + '/Country';
-			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body);
-			});
-		},
-		
-		getNodeCountryIso: function (id, callback) {
-			var req = routeNode + '/' + id + '/CountryIso';
+		getNodePEndorsement: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/PEndorsement';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
 	
-		getNodeDataset: function (id, callback) {
-			var req = routeNode + '/' + id + '/Dataset';
+	
+		getNodeCountry: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/Country';
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body);
+			});
+		},
+		
+		getNodeCountryIso: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/CountryIso';
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body);
+			});
+		},
+	
+		getNodeDataset: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/Dataset';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
 		},
 		
 		
-		getNodeInstallation: function (id, callback) {
-			var req = routeNode + '/' + id + '/Installation';
+		getNodeInstallation: function (UUID, callback) {
+			var req = routeNode + '/' + UUID + '/Installation';
 			needle.get(req, function(error, response, body){
 				if (callback) callback(error, body);
 			});
@@ -375,224 +397,223 @@ var gbif = function( ) {
 		getOrg: function (options, callback) {
 			var req = routeOrganisation + '?' + qs.stringify(options);
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 
-		getOrganisation: function (id, callback) {
-			var req = routeOrganisation  + '/' + id + '/Organisation';
+		getOrganisation: function (UUID, callback) {
+			var req = routeOrganisation  + '/' + UUID + '/Organisation';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 
-		getOrgcontact: function (id, callback) {
-			var req = routeOrganisation  + '/' + id + '/Orgcontact';
+		getOrgcontact: function (UUID, callback) {
+			var req = routeOrganisation  + '/' + UUID + '/Orgcontact';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getOrgEndpoint: function (id, callback) {
-			var req = routeOrganisation  + '/' + id + '/OrgEndpoint';
+		getOrgEndpoint: function (UUID, callback) {
+			var req = routeOrganisation  + '/' + UUID + '/OrgEndpoint';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getOrgIdentifier: function (id, callback) {
-			var req = routeOrganisation  + '/' + id + '/OrgIdentifier';
+		getOrgIdentifier: function (UUID, callback) {
+			var req = routeOrganisation  + '/' + UUID + '/OrgUUIDentifier';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getOrgTag: function (id, callback) {
-			var req = routeOrganisation  + '/' + id + '/OrgTag';
+		getOrgTag: function (UUID, callback) {
+			var req = routeOrganisation  + '/' + UUID + '/OrgTag';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
-			});
-		},
-		
-		
-		getOrgMachineTag: function (id ,callback) {
-			var req = routeOrganisation  + '/' + id + '/OrgMachineTag';
-			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		
-		getOrgComment: function (id ,callback) {
-            var req = routeOrganisation  + '/' + id + '/OrgComment';
+		getOrgMachineTag: function (UUID ,callback) {
+			var req = routeOrganisation  + '/' + UUID + '/OrgMachineTag';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
-			});
-		},
-		getOrgHostedDataset: function ( id ,callback) {
-            var req = routeOrganisation  + '/' + id + '/HostedDataset';
-			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
-			});
-		},
-		getOrgOwnedDataset: function (id , callback) {
-			var req = routeOrganisation  + '/' + id + '/OwnedDataset';
-			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
-		getOrgInstallation: function (id , callback) {
-			var req = routeOrganisation  + '/' + id + '/Installation';
+		
+		getOrgComment: function (UUID ,callback) {
+            var req = routeOrganisation  + '/' + UUID + '/OrgComment';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getOrgDeleted: function ( id , callback) {
-		var req = routeOrganisation  + '/' + id + '/Deleted';
+		getOrgHostedDataset: function ( UUID ,callback) {
+            var req = routeOrganisation  + '/' + UUID + '/HostedDataset';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
+			});
+		},
+		getOrgOwnedDataset: function (UUID , callback) {
+			var req = routeOrganisation  + '/' + UUID + '/OwnedDataset';
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body);
 			});
 		},
 		
-		getOrgPending: function (id , callback) {
-		var req = routeOrganisation  + '/' + id + '/Pending';
+		getOrgInstallation: function (UUID , callback) {
+			var req = routeOrganisation  + '/' + UUID + '/Installation';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getOrgPublishing: function (id , callback) {
-		var req = routeOrganisation  + '/' + id + '/Publishing';
+		getOrgDeleted: function ( UUID , callback) {
+		var req = routeOrganisation  + '/' + UUID + '/Deleted';
 			needle.get(req, function(error, response, body){
-				//if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
+			});
+		},
+		
+		getOrgPending: function (UUID , callback) {
+		var req = routeOrganisation  + '/' + UUID + '/Pending';
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body);
+			});
+		},
+		getOrgPublishing: function (UUID , callback) {
+		var req = routeOrganisation  + '/' + UUID + '/Publishing';
+			needle.get(req, function(error, response, body){
+				if (callback) callback(error, body);
 			});
 		},
 		
 	}
-/*	
-        have to correct parameter passing..
+
 
 	//	TODO these routes need to be added
 	this.network = {
-		getNetwork: function (id, callback) {
-			var req = routeNetwork + '?' + qs.stringify(id);
+		getNetwork: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/network';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 
-	   getGetNetwork: function (id, callback) {
-			var req = routeNetwork + '?' + qs.stringify(id);
+	   getGetNetwork: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/getnetwork';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 
-		 getNetworkContact: function (id, callback) {
-			var req = routeNetwork + '?' + qs.stringify(id);
+		 getNetworkContact: function (UUID, callback) {
+				var req = routeNetwork + '/' + UUID + '/networkcontact';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
-		getNetworkEndpoint: function (id, callback) {
-			var req = routeNetwork + '?' + qs.stringify(id);
+		getNetworkEndpoint: function (UUID, callback) {
+				var req = routeNetwork + '/' + UUID + '/networkendpoint';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getNetworkIdentifier: function (id, callback) {
-			var req = routeNetwork + '?' + qs.stringify(id);
+		getNetworkIdentifier: function (UUID, callback) {
+				var req = routeNetwork + '/' + UUID + '/networkidentifier';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
-		getNetworkTag: function (id, callback) {
-			var req = routeNetwork + '?' + qs.stringify(id);
+		getNetworkTag: function (UUID, callback) {
+				var req = routeNetwork + '/' + UUID + '/networktag';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getNetworkMachineTag: function (id, callback) {
-			var req = routeNetwork + '?' + qs.stringify(id);
+		getNetworkMachineTag: function (UUID, callback) {
+				var req = routeNetwork + '/' + UUID + '/networkmachinetag';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getNetworkComment: function (id, callback) {
-			var req = routeNetwork + '?' + qs.stringify(id);
+		getNetworkComment: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/networkcomment';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 	}
 	//dataset
 	this.dataset = {
-		getDataset: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getDataset: function (UUID, callback) {
+		var req = routeNetwork + '/' + UUID + '/Dataset';	
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
-		},
+		},																												
 
-		getGetDataSet: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getGetDataSet: function (UUID, callback) {								
+			var req = routeNetwork + '/' + UUID + '/getDataset';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);			
 			});
 		},
-		getDataSetContact: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getDataSetContact: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/Datasetcontact';
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getDataSetEndpoint: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getDataSetEndpoint: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/Datasetendpoint';	
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getDataSetIdentifier: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getDataSetIdentifier: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/Datasetidentifier';	
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getDataSetTag: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getDataSetTag: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/Datasettag';	
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getDataSetMachineTag: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getDataSetMachineTag: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/Datasetmachinetag';	
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
-		getDataSetComment: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getDataSetComment: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/Datasetcomment';	
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
-		getDataSetConstituents: function (id, callback) {
-			var req = routeDataset + '?' + qs.stringify(id);
+		getDataSetConstituents: function (UUID, callback) {
+			var req = routeNetwork + '/' + UUID + '/Datasetconstituents';	
 			needle.get(req, function(error, response, body){
-				if (callback) callback(error, body.results);
+				if (callback) callback(error, body);
 			});
 		},
 		
 		
 	}
 	
-	//doubt?
+	//doubt?		
 	this.setAuth = function(token) {
 		this.authToken = token;
 	}
 
-}
+
 */
 }
 module.exports = gbif;
