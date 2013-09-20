@@ -198,7 +198,13 @@ var gbif = function( ) {
 			var req = routeLookupNameUsage + '?' + qs.stringify(options);
 			console.log("isfggggggggggggggggggggggggggggggg",req);
 			needle.get(req, function(error, response, body){
-				if (callback) callback( error, body );
+							//console.log(body);
+				if(error) {
+					if (callback) callback( {success:false,error:error} );
+				}else {
+					if (callback) callback( {success:true,results:body,totalCount: body.length} );
+				}
+
 			});
 		}
 
